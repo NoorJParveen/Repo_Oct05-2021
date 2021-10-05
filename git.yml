@@ -1,0 +1,26 @@
+---
+- name: "Play 1- cgi website configuration"  
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: "install git"
+      yum:
+        name: "git"
+        state: present
+    - name: ensure a list of packages installed
+      yum:
+         name: "{{ packages }}"
+      vars:
+          packages:
+           - vim
+           - wget
+           - telnet
+        ##- name: "install telnet,vim and wget"
+        #yum:
+        # name: "{{ packages }}"
+        # state: present
+        # vars:
+        # packages:
+        # -  vim
+        # -  wget
+        # -  telnet
